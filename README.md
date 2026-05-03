@@ -92,18 +92,22 @@ This system enables **early fault detection before failure occurs**.
 
 ---
 
-## 🧪 Visual Diagnostics
+## 📊 Visual Diagnostics
 
 <p align="center">
-  <img src="assets/learning_curves.png" width="45%">
-  <img src="assets/residual_plots.png" width="45%">
+  <img src="assets/learning_curves.png" width="48%">
+  <img src="assets/overfitting_diagnosis.png" width="48%">
 </p>
 
 <p align="center">
-  <img src="assets/eda_heatmap.png" width="45%">
-  <img src="assets/overfitting_diagnosis.png" width="45%">
+  <img src="assets/residual_plots.png" width="48%">
+  <img src="assets/residual_qq_plots.png" width="48%">
 </p>
 
+<p align="center">
+  <img src="assets/predicted_vs_actual.png" width="48%">
+  <img src="assets/feature_importance.png" width="48%">
+</p>
 ---
 
 ## 🚀 Quickstart
