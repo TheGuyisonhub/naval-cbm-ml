@@ -1,123 +1,118 @@
-# Naval Propulsion Predictive Maintenance (Machine Learning)
 
-End-to-end machine learning pipeline for **condition-based maintenance (CBM)** of naval gas turbine propulsion systems, designed to predict component degradation before failure.
+<h1 align="center">Naval Propulsion Predictive Maintenance</h1>
+
+<p align="center">
+Machine Learning system for predicting gas turbine degradation using XGBoost (R² = 0.9928)
+</p>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Python-3.10-blue">
+<img src="https://img.shields.io/badge/ML-XGBoost-orange">
+<img src="https://img.shields.io/badge/Project-Completed-green">
+<img src="https://img.shields.io/badge/Dataset-UCI-lightgrey">
+</p>
 
 ---
 
-## 🚀 Key Result
+## 🚀 Overview
 
-**XGBoost achieves R² = 0.9928 (RMSE < 1e-3)** for simultaneous prediction of compressor and turbine decay coefficients.
+This project builds an end-to-end **condition-based maintenance (CBM)** system for naval gas turbine propulsion systems.
 
-This enables highly accurate **early-warning maintenance decisions** in naval propulsion systems.
+It predicts:
+- Compressor Decay
+- Turbine Decay
 
-![Predicted vs Actual](assets/predicted_vs_actual.png)
-![Feature Importance](assets/feature_importance.png)
+using 16 real-time sensor readings from a CODLAG propulsion system.
+
+👉 Best Model: **XGBoost (R² = 0.9928)**
+
+---
+
+## 📊 Key Result
+
+<p align="center">
+  <b>XGBoost achieves R² = 0.9928 with RMSE < 1e-3</b>
+</p>
+
+<p align="center">
+  <img src="assets/predicted_vs_actual.png" width="45%">
+  <img src="assets/feature_importance.png" width="45%">
+</p>
 
 ---
 
 ## 🧠 Problem Statement
 
-Gas turbine propulsion systems degrade over time, leading to reduced efficiency and potential failure.
+Gas turbine components degrade over time, leading to:
+- Efficiency loss
+- Increased failure risk
+- High maintenance cost
 
-This project predicts:
-- GT Compressor Decay
-- GT Turbine Decay
-
-using real-time sensor data to enable **condition-based maintenance (CBM)** before failures occur.
-
----
-
-## ⚙️ Dataset
-
-**UCI Naval Propulsion Plants Dataset**  
-- 11,934 samples  
-- 16 sensor features  
-- 2 continuous targets  
-- CODLAG propulsion system (diesel-electric + gas turbine simulation)
-
-🔗 Source: https://archive.ics.uci.edu/dataset/316/condition+based+maintenance+of+naval+propulsion+plants
+This system enables **early fault detection before failure occurs**.
 
 ---
 
-## 🏗️ Project Workflow
+## ⚙️ Pipeline Overview
 
-### 1. Exploratory Data Analysis (EDA)
-- Feature distributions (histograms, box plots)
-- Correlation heatmaps
-- Pairwise feature relationships
-- Statistical summaries
+### 🔹 Data Processing
+- Feature cleaning
+- Outlier handling (IQR)
+- Standardization (no leakage)
 
-### 2. Data Preprocessing
-- Removal of zero-variance features
-- IQR-based outlier inspection (retained for valid operating states)
-- StandardScaler applied (train-only fit to avoid leakage)
+### 🔹 Feature Engineering
+- Pressure Ratio (Πc)
+- Power Proxy (Torque × RPM)
+- Operating Mode classification
 
-### 3. Feature Engineering
-- Compressor Pressure Ratio: Πc = P2 / P1  
-- Turbine Power Proxy: WT = Torque × RPM  
-- Operating mode classification (Low / Medium / High)
-
----
-
-## 🤖 Models Used
-
-| Model | Type | Description |
-|------|------|-------------|
-| Ridge Regression | Linear | Baseline model with L2 regularization |
-| Random Forest | Ensemble | Bagging-based non-linear model |
-| XGBoost ⭐ | Boosting | Best performing model |
-| ANN (Keras) | Neural Network | Deep learning baseline |
+### 🔹 Models Used
+- Ridge Regression
+- Random Forest
+- XGBoost ⭐
+- ANN (Keras)
 
 ---
 
-## 📊 Performance Summary
+## 📈 Model Performance
 
 | Model | RMSE | MAE | R² |
 |------|------|-----|----|
-| Ridge Regression | 3.475e-3 | 2.726e-3 | 0.9058 |
-| Random Forest | 8.75e-4 | **4.18e-4** | 0.9923 |
+| Ridge | 3.475e-3 | 2.726e-3 | 0.9058 |
+| Random Forest | 8.75e-4 | 4.18e-4 | 0.9923 |
 | **XGBoost** | **8.60e-4** | 6.02e-4 | **0.9928** |
 | ANN | 4.120e-3 | 3.245e-3 | 0.7685 |
 
 ---
 
-## ⚙️ Engineering Interpretation
+## ⚙️ Engineering Insight
 
-- Compressor decay prediction error ≈ **1.9% of operating range**
-- Turbine decay prediction error ≈ **3.07% of operating range**
+- Compressor error ≈ **1.9% of operating range**
+- Turbine error ≈ **3.07% of operating range**
 
-👉 Both are within acceptable thresholds for **real-world CBM early warning systems**
+👉 Both values are within acceptable limits for **real-world CBM systems**
 
 ---
 
-## 📈 Output Visualizations
+## 🧪 Visual Diagnostics
 
-Generated automatically in `/outputs`:
+<p align="center">
+  <img src="assets/learning_curves.png" width="45%">
+  <img src="assets/residual_plots.png" width="45%">
+</p>
 
-- Feature distributions
-- Correlation heatmap
-- Pair plots
-- Learning curves
-- Residual plots
-- Q-Q plots
-- Predicted vs Actual comparison
-- Feature importance analysis
-- Model comparison charts
+<p align="center">
+  <img src="assets/eda_heatmap.png" width="45%">
+  <img src="assets/overfitting_diagnosis.png" width="45%">
+</p>
 
 ---
 
 ## 🚀 Quickstart
 
 ```bash
-# 1. Clone repository
 git clone https://github.com/TheGuyisonhub/naval-cbm-ml.git
 cd naval-cbm-ml
 
-# 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Add dataset
-# Download data.txt from UCI and place in data/data.txt
-
-# 4. Run pipeline
+# Add dataset (UCI data.txt → data/)
 python main.py
