@@ -1,51 +1,81 @@
-# TODO — Naval CBM ML Project
+# TODO — Naval Propulsion CBM ML System
 
-## Immediate (Before Submission)
-- [ ] Upload `data.txt` link in README (or add download script)
-- [ ] Add selected output figures to `assets/` and embed in README
-- [ ] Verify `requirements.txt` versions match Colab environment
-- [ ] Add GitHub Actions CI — `python main.py --smoke-test` on push
+## 🚀 Immediate (Pre-Submission / GitHub Finalization)
 
-## Short-Term Improvements
-- [ ] **SHAP values** — explainability for XGBoost predictions (replace permutation importance for ANN too)
-- [ ] **Streamlit dashboard** — real-time inference UI with sliders for each sensor input
-- [ ] **Hyperparameter tuning** — replace GridSearchCV with Optuna for faster + smarter search
-- [ ] **Cross-validation metrics** — report mean ± std R² across 5 folds, not just single split
-- [ ] **Confidence intervals** — quantile regression or conformal prediction for uncertainty bounds
+- [ ] Add dataset access method (UCI link + optional auto-download script)
+- [ ] Embed key figures in README (`predicted_vs_actual`, `feature_importance`)
+- [ ] Sync `requirements.txt` with execution environment (freeze versions)
+- [ ] Add lightweight CI check (GitHub Actions):
+  - Run `python main.py --smoke-test`
+  - Validate pipeline executes end-to-end without errors
+- [ ] Ensure `.gitignore` excludes dataset, models, and large artifacts
 
-## Modelling Extensions
-- [ ] **LSTM** — treat each operating profile as a time series, predict degradation trajectory
-- [ ] **Transformer** — position-sensitive attention for long-range sensor dependencies
-- [ ] **Multi-task learning** — shared ANN trunk for compressor + turbine (vs current independent heads)
-- [ ] **Ensemble stacking** — meta-learner on top of RF + XGBoost predictions
+---
 
-## Engineering / Deployment
-- [ ] Package as Python module with `predict(sensor_dict)` API
-- [ ] Docker container for reproducible inference
-- [ ] Validate on real vessel data (when available)
-- [ ] Benchmark inference speed (ms/sample) for embedded deployment
+## ⚙️ Model & Performance Enhancements
 
-## Portfolio / GitHub
-- [ ] Add repo to GitHub profile README under "ML Projects"
-- [ ] Write a LinkedIn post / project write-up (tag NUST CEME, CS-333)
-- [ ] Add badges: Python version, license, dataset source
-- [ ] Record a short demo video of the pipeline output plots
+- [ ] Replace GridSearchCV with **Optuna** for efficient hyperparameter optimization
+- [ ] Add **5-fold cross-validation reporting (mean ± std R² / RMSE)**
+- [ ] Implement **uncertainty estimation**
+  - Quantile regression or conformal prediction intervals
+- [ ] Improve ANN architecture tuning (batch size, dropout, regularization)
 
-## Done ✓
-- [x] EDA (histograms, boxplots, heatmap, pairplot, target distributions)
-- [x] Preprocessing (zero-variance removal, IQR outlier analysis, StandardScaler)
-- [x] Feature engineering (Pressure Ratio, Power Proxy, Operating Mode)
-- [x] Ridge Regression baseline with RidgeCV
-- [x] Random Forest with GridSearchCV (5-fold)
-- [x] XGBoost with GridSearchCV (5-fold)
-- [x] ANN (Keras) with EarlyStopping + ReduceLROnPlateau
-- [x] Per-target RMSE (Compressor + Turbine)
-- [x] Wilcoxon signed-rank statistical significance testing
-- [x] Overfitting diagnosis (Train / Val / Test R²)
-- [x] Learning curves for all 4 models
-- [x] Residual plots + Q-Q plots
-- [x] Feature importance (Ridge coef, RF Gini, XGB Gain, ANN permutation)
-- [x] Predicted vs Actual scatter plots
-- [x] Engineering interpretation (RMSE as % of operating range)
-- [x] IEEE-format paper (4 pages, LaTeX)
-- [x] Models saved (pkl + .keras)
+---
+
+## 🧠 Explainability & Interpretability
+
+- [ ] Integrate **SHAP analysis for XGBoost**
+  - Global feature importance
+  - Local prediction explanations
+- [ ] Replace permutation-based ANN interpretation with SHAP-compatible surrogate analysis
+- [ ] Add feature sensitivity analysis for key sensors
+
+---
+
+## 📈 Advanced Modeling Extensions
+
+- [ ] Time-series modeling (LSTM / GRU) for degradation trajectories
+- [ ] Transformer-based sequence learning for long-range dependencies
+- [ ] Multi-task learning architecture (shared backbone for both targets)
+- [ ] Stacking ensemble (RF + XGBoost + ANN → meta-learner)
+
+---
+
+## 🛠️ Engineering & Deployment
+
+- [ ] Convert pipeline into reusable Python package:
+  - `predict(sensor_input)` API
+- [ ] Add Docker container for reproducible inference
+- [ ] Benchmark inference latency (ms/sample)
+- [ ] Evaluate deployment feasibility for embedded/edge systems
+
+---
+
+## 🌐 Portfolio & Presentation
+
+- [ ] Add GitHub profile feature section (pinned repository)
+- [ ] Write LinkedIn technical post (problem → approach → results → impact)
+- [ ] Add repository badges (Python version, dataset source, license)
+- [ ] Record short demo (plots + pipeline execution walkthrough)
+- [ ] Add architecture diagram (data → model → output flow)
+
+---
+
+## ✅ Completed (Core ML Pipeline)
+
+- [x] Exploratory Data Analysis (distribution, correlation, pairplots)
+- [x] Data preprocessing (scaling, feature filtering, leakage prevention)
+- [x] Feature engineering (pressure ratio, power proxy, operating modes)
+- [x] Ridge Regression baseline (RidgeCV)
+- [x] Random Forest (GridSearchCV)
+- [x] XGBoost optimized model
+- [x] ANN (Keras with EarlyStopping + LR scheduling)
+- [x] Multi-output regression (2 targets)
+- [x] Statistical validation (Wilcoxon signed-rank test)
+- [x] Model comparison (R², RMSE, MAE)
+- [x] Overfitting analysis (train/val/test split evaluation)
+- [x] Learning curves + residual diagnostics
+- [x] Feature importance across models
+- [x] Engineering interpretation (% operating range error)
+- [x] IEEE-style technical report
+- [x] Model persistence (.pkl, .keras exports)
